@@ -1,0 +1,37 @@
+
+INSERT INTO product (id, type, status, item_number, description, price, color)
+VALUES (200, 'TEXTILE', 'SOLD', 432995, 'Large merino carpet', 2310, 'Blue');
+
+INSERT INTO food (id, type, flavor, price, description, stock)
+VALUES (300, 'HOT_DOG', 'CHILI_FLAVORED', 10, 'Tasty chili hot dog', 600);
+
+INSERT INTO customer (id, member)
+VALUES (1, false);
+
+INSERT INTO customer_order (id, customer_id, price)
+VALUES (1, 1, 1485);
+
+INSERT INTO order_item (id, customer_order_id, product_id)
+VALUES (20, 1, 200);
+INSERT INTO order_item (id, customer_order_id, food_id)
+VALUES (21, 1, 300);
+
+
+
+
+
+
+INSERT INTO customer (id, member)
+VALUES (101, false);
+INSERT INTO customer (id, member)
+VALUES (102, false);
+
+INSERT INTO customer_order (id, customer_id, price)
+VALUES (2, 101, 0);
+INSERT INTO customer_order (id, customer_id, price)
+VALUES (3, 102, 0);
+
+
+
+
+
