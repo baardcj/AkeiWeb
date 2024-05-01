@@ -11,7 +11,7 @@ Return all orders:
 ```http
 GET /orders
 ```
-<br> <br>
+<br> 
 
 Return one order:
 
@@ -22,7 +22,7 @@ GET /orders/77
 | Pathvariable | Type  |
 |:-------------| :--- | 
 | `order id`   | `string` |
-<br> <br>
+<br>
 
 Creates a new order:
 
@@ -42,7 +42,7 @@ GET /orders/new?customer_id=2&member=true
 |:-------------|:--------------------------------|:---------|:----------------------|
 |     | `non empty list of order items` | `true`   | `List of order items` |
 
-<br>
+
 A JSON request body containing a non-empty list of order items is required.
 A food order item must contain two recuired properties: `type` and `foodFlavour`. 
 A furniture order item contains one property : `itemNumber`
