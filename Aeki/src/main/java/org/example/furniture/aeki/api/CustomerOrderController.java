@@ -7,7 +7,6 @@ import org.example.furniture.aeki.api.exceptions.CustomerOrderNotFoundException;
 import org.example.furniture.aeki.data.entities.CustomerOrder;
 import org.example.furniture.aeki.data.entities.OrderItem;
 import org.example.furniture.aeki.data.repositories.CustomerOrderRepository;
-import org.example.furniture.aeki.data.repositories.OrderItemRepository;
 import org.example.furniture.aeki.model.OrderForm;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,6 @@ import java.util.Optional;
 public class CustomerOrderController {
 
     private final CustomerOrderRepository customerOrderRepository;
-    private final OrderItemRepository orderItemRepository;
     private final CustomOrderControllerDelegate delegate;
 
     @GetMapping("/orders")

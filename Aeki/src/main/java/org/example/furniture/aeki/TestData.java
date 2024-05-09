@@ -95,6 +95,7 @@ public class TestData {
         discountDetailsRepository.save(discountDetails2);
         discountRepository.save(discountGroup1);
 
+
         customerDiscountRepository.save(CustomerDiscountMap.builder()
                         .customer(customer2)
                         .discount(discountGroup1).build());
