@@ -13,5 +13,4 @@ public interface OrderItemProduct {
     int getPrice();
 
     Discountable getDiscountable();
-
 }

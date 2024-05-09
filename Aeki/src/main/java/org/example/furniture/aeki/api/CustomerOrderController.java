@@ -30,16 +30,15 @@ public class CustomerOrderController {
     @PostMapping("/orders/new")
     @Transactional
     public CustomerOrder newOrder(@RequestParam(name = "customer_id", required = false) Optional<Long> customerId,
+                                  @RequestParam(name = "member", required = false) Optional<Boolean> member,
                                   @NotEmpty(message = "empty order")
                                   @RequestBody List<OrderForm> orderForms) {
 
-        CustomerOrder customerOrder = delegate.createOrder(customerId);
+        CustomerOrder customerOrder = delegate.createOrder(customerId, member);
+        customerOrderRepository.save(customerOrder);
         orderForms.forEach(orderForm -> {
-            OrderItem orderItem = delegate.createOrderItem(orderForm, customerOrder.getCustomer() );
-            orderItem.setCustomerOrder(customerOrder);
-            orderItemRepository.save(orderItem);
-            customerOrder.addOrderItem(orderItem);
-            customerOrderRepository.save(customerOrder);
+            OrderItem orderItem = delegate.createOrderItem(orderForm, customerOrder.getCustomer());
+            delegate.saverOrderItem(orderItem, customerOrder);
         });
 
         return customerOrder;

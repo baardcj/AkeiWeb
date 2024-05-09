@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.furniture.aeki.model.Discountable;
-import org.example.furniture.aeki.model.enums.FurnitureType;
+import org.example.furniture.aeki.model.enums.WarehouseProductType;
 import org.example.furniture.aeki.model.OrderItemProduct;
 import org.example.furniture.aeki.model.enums.FurnitureStatus;
 
@@ -17,7 +17,7 @@ import org.example.furniture.aeki.model.enums.FurnitureStatus;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIncludeProperties({"type", "itemNumber", "description", "price"})
-public class Furniture implements OrderItemProduct {
+public class WarehouseProduct implements OrderItemProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Furniture implements OrderItemProduct {
 
     @Enumerated(EnumType.STRING)
     @Column(name="type")
-    private FurnitureType type;
+    private WarehouseProductType type;
 
     @Enumerated(EnumType.STRING)
     @Column(name="status")

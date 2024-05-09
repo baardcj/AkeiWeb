@@ -1,7 +1,5 @@
 package org.example.furniture.aeki.data.entities.keys;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import lombok.*;
 
 import java.io.Serializable;
@@ -10,7 +8,7 @@ import java.io.Serializable;
 @Setter
 @RequiredArgsConstructor
 @EqualsAndHashCode
-public class CustomerDiscountId implements Serializable {
+public class CustomerDiscountMapId implements Serializable {
 
     Long customer;
     Long discount;

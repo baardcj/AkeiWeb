@@ -24,10 +24,10 @@ public class OrderItem {
     private CustomerOrder customerOrder;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Furniture furniture;
+    private WarehouseProduct furniture;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Food food;
+    private FoodProduct food;
 
     @Builder.Default
     @Column(name="discount", nullable=false)

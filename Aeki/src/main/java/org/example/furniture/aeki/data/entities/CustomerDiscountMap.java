@@ -2,15 +2,15 @@ package org.example.furniture.aeki.data.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.furniture.aeki.data.entities.keys.CustomerDiscountId;
+import org.example.furniture.aeki.data.entities.keys.CustomerDiscountMapId;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Getter
-@IdClass(CustomerDiscountId.class)
-public class CustomerDiscount {
+@IdClass(CustomerDiscountMapId.class)
+public class CustomerDiscountMap {
 
     @Id
     @ManyToOne

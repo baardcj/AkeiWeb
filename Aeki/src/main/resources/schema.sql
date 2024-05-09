@@ -11,7 +11,7 @@ CREATE TABLE discount (
     discount_details_id INT not null
 );
 
-CREATE TABLE customer_discount (
+CREATE TABLE customer_discount_map (
     cunstomer_id INT NOT NULL,
     discount_id INT NOT NULL
 );
@@ -35,7 +35,7 @@ CREATE TABLE order_item (
     discount INT
 );
 
-CREATE TABLE furniture (
+CREATE TABLE warehouse_product (
     id INT NOT NULL,
     type VARCHAR(25) NOT NULL,
     status VARCHAR(25) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE furniture (
     color VARCHAR(50)
 );
 
-CREATE TABLE food (
+CREATE TABLE food_product (
     id INT NOT NULL,
     type VARCHAR(25),
     flavor VARCHAR(50),

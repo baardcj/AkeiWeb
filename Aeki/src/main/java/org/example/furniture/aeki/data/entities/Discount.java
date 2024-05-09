@@ -32,7 +32,7 @@ public class Discount {
 
     public int getDiscount(Discountable discountable) {
         return getDiscountDetails().stream()
-                .filter(a -> a.equalsDiscountable(discountable))
+                .filter(a -> a.appliesTo(discountable))
                 .map(DiscountDetails::getDiscount)
                 .reduce(0, Integer::sum);
     }

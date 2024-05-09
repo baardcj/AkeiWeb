@@ -41,5 +41,4 @@ public class CustomerOrder {
     private void addToSum(int price) {
         this.setSum(getSum() + price);
     }
-
 }

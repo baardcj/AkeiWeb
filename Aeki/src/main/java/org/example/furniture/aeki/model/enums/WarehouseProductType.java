@@ -6,11 +6,8 @@ import org.example.furniture.aeki.model.Discountable;
 
 @Getter
 @AllArgsConstructor
-public enum FurnitureType implements Discountable {
-    FURNITURE(true, 200),
-    CARPETS(true, 100),
-    TEXTILE(false, 0);
-
-    public boolean memberDiscount;
-    public int discount;
+public enum WarehouseProductType implements Discountable {
+    FURNITURE,
+    CARPETS,
+    TEXTILE;
 }

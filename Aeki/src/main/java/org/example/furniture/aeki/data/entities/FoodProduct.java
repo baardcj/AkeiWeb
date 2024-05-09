@@ -15,7 +15,7 @@ import org.example.furniture.aeki.model.OrderItemProduct;
 @NoArgsConstructor
 @Builder
 @JsonIncludeProperties({"type", "itemNumber", "description", "price"})
-public class Food implements OrderItemProduct {
+public class FoodProduct implements OrderItemProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,7 +59,6 @@ public class Food implements OrderItemProduct {
     public Discountable getDiscountable() {
         return type;
     }
-
 
     @Override
     public int getPrice() {

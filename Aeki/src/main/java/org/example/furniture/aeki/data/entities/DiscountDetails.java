@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.furniture.aeki.model.Discountable;
 import org.example.furniture.aeki.model.enums.FoodType;
-import org.example.furniture.aeki.model.enums.FurnitureType;
+import org.example.furniture.aeki.model.enums.WarehouseProductType;
 
 @Getter
 @Setter
@@ -24,16 +24,16 @@ public class DiscountDetails {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "furniture_type")
-    private FurnitureType furnitureType;
+    private WarehouseProductType warehouseProductType;
 
     @Column(name = "discount")
     private int discount;
 
     private Discountable getDiscountable() {
-        return foodType != null ? foodType : furnitureType;
+        return foodType != null ? foodType : warehouseProductType;
     }
 
-    public boolean equalsDiscountable(Discountable discountable) {
+    public boolean appliesTo(Discountable discountable) {
         return getDiscountable().equalDiscountable(discountable);
     }
 }

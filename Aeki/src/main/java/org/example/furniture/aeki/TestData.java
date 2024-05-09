@@ -3,7 +3,6 @@ package org.example.furniture.aeki;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.furniture.aeki.data.entities.*;
-import org.example.furniture.aeki.data.entities.keys.CustomerDiscountId;
 import org.example.furniture.aeki.data.repositories.*;
 import org.example.furniture.aeki.model.enums.*;
 import org.springframework.stereotype.Component;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestData {
 
-    private final CustomerDiscountRepository customerDiscountRepository;
+    private final CustomerDiscountMapRepository customerDiscountRepository;
     private final CustomerRepository customerRepository;
     private final DiscountDetailsRepository discountDetailsRepository;
     private final DiscountRepository discountRepository;
@@ -26,8 +25,8 @@ public class TestData {
                 .member(false)
                 .build());
 
-        productRepository.save(Furniture.builder()
-                .type(FurnitureType.TEXTILE)
+        productRepository.save(WarehouseProduct.builder()
+                .type(WarehouseProductType.TEXTILE)
                 .status(FurnitureStatus.NOT_SOLD)
                 .itemNumber(1000)
                 .description("Merino carpet")
@@ -35,7 +34,7 @@ public class TestData {
                 .colour("Blue")
                 .build());
 
-        foodRepository.save(Food.builder()
+        foodRepository.save(FoodProduct.builder()
                 .type(FoodType.HOT_DOG)
                 .flavour(FoodFlavour.CHILI_FLAVORED)
                 .price(10)
@@ -43,9 +42,8 @@ public class TestData {
                 .stock(50)
                 .build());
 
-
-        productRepository.save(Furniture.builder()
-                .type(FurnitureType.FURNITURE)
+        productRepository.save(WarehouseProduct.builder()
+                .type(WarehouseProductType.FURNITURE)
                 .status(FurnitureStatus.NOT_SOLD)
                 .itemNumber(2000)
                 .description("Big wardrobe")
@@ -53,8 +51,8 @@ public class TestData {
                 .weight(130)
                 .build());
 
-        productRepository.save(Furniture.builder()
-                .type(FurnitureType.TEXTILE)
+        productRepository.save(WarehouseProduct.builder()
+                .type(WarehouseProductType.TEXTILE)
                 .status(FurnitureStatus.NOT_SOLD)
                 .itemNumber(1001)
                 .description("Rug")
@@ -62,14 +60,13 @@ public class TestData {
                 .colour("Green")
                 .build());
 
-        foodRepository.save(Food.builder()
+        foodRepository.save(FoodProduct.builder()
                 .type(FoodType.HOT_DOG_VEGETARIAN)
                 .flavour(FoodFlavour.NATURAL)
                 .price(10)
                 .description("Tasty vegetarian hot dog")
                 .stock(50)
                 .build());
-
 
         DiscountDetails discountDetails1 = DiscountDetails.builder()
                 .id(1L)
@@ -79,30 +76,27 @@ public class TestData {
 
         DiscountDetails discountDetails2 = DiscountDetails.builder()
                 .id(2L)
-                .furnitureType(FurnitureType.FURNITURE)
+                .warehouseProductType(WarehouseProductType.FURNITURE)
                 .discount(200)
                 .build();
 
-        Discount discount1 = Discount.builder()
+        Discount discountGroup1 = Discount.builder()
                 .id(1L)
                 .type(DiscountType.FURNITURE_AND_HOT_DOG)
                 .build();
 
-        discount1.addDiscountDetails(discountDetails1);
-        discount1.addDiscountDetails(discountDetails2);
+        discountGroup1.addDiscountDetails(discountDetails1);
+        discountGroup1.addDiscountDetails(discountDetails2);
 
         Customer customer2 = Customer.builder().id(2L).member(true).build();
 
         customerRepository.save(customer2);
         discountDetailsRepository.save(discountDetails1);
         discountDetailsRepository.save(discountDetails2);
-        discountRepository.save(discount1);
+        discountRepository.save(discountGroup1);
 
-
-        customerDiscountRepository.save(CustomerDiscount.builder()
+        customerDiscountRepository.save(CustomerDiscountMap.builder()
                         .customer(customer2)
-                        .discount(discount1).build());
-
-
+                        .discount(discountGroup1).build());
     }
 }

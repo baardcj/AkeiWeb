@@ -9,6 +9,7 @@ import org.example.furniture.aeki.data.entities.OrderItem;
 import org.example.furniture.aeki.data.repositories.CustomerRepository;
 import org.example.furniture.aeki.data.repositories.FoodRepository;
 import org.example.furniture.aeki.data.repositories.FurnitureRepository;
+import org.example.furniture.aeki.data.repositories.OrderItemRepository;
 import org.example.furniture.aeki.model.OrderForm;
 import org.example.furniture.aeki.model.OrderItemProduct;
 import org.example.furniture.aeki.services.DiscountService;
@@ -24,15 +25,17 @@ public class CustomOrderControllerDelegate {
     private final FurnitureRepository furnitureRepository;
     private final FoodRepository foodRepository;
     private final DiscountService discountService;
+    private final OrderItemRepository orderItemRepository;
 
-    public CustomerOrder createOrder(Optional<Long> customerId) {
-        return CustomerOrder.builder().customer(getCustomer(customerId)).build();
+    public CustomerOrder createOrder(Optional<Long> customerId, Optional<Boolean> member) {
+        return CustomerOrder.builder().customer(getCustomer(customerId, member)).build();
     }
 
-    private Customer getCustomer(Optional<Long> customerId) {
+    private Customer getCustomer(Optional<Long> customerId, Optional<Boolean> member) {
         if (customerId.isPresent()) {
             Customer customer = customerRepository.findById(customerId.get()).
                     orElseThrow(() -> new CustomerOrderNotFoundException(customerId.get()));
+            member.ifPresent(customer::setMember);
             return customer;
         }
         return customerRepository.saveAndFlush(Customer.builder().build());
@@ -68,4 +71,9 @@ public class CustomOrderControllerDelegate {
         return orderItem;
     }
 
+    public void saverOrderItem(OrderItem orderItem, CustomerOrder customerOrder) {
+        orderItem.setCustomerOrder(customerOrder);
+        customerOrder.addOrderItem(orderItem);
+        orderItemRepository.save(orderItem);
+    }
 }
