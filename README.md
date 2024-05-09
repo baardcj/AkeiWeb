@@ -48,3 +48,16 @@ Example body:
 [{"itemNumber": 2000},
 {"type": "HOT_DOG", "foodFlavour" : "CHILI_FLAVORED"}]
 ```
+
+EXAMPLES CURL: 
+
+curl -X POST --location "http://localhost:8080/orders/new?customer_id=2&member=1" \ -H "Content-Type: application/json" \ -d "[{\"itemNumber\": 2000}]"
+
+curl -X POST --location "http://localhost:8080/orders/new?customer_id=2" \
+-H "Content-Type: application/json" \
+-d "[{\"type\": \"HOT_DOG\", \"foodFlavour\" : \"CHILI_FLAVORED\"},
+{\"type\": \"HOT_DOG\", \"foodFlavour\" : \"CHILI_FLAVORED\"}]"
+
+curl -X GET --location "http://127.0.0.1:8080/orders"
+
+
